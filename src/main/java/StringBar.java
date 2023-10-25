@@ -4,6 +4,10 @@ import java.util.List;
 public class StringBar extends Bar{
     private boolean happyHour = false;
     private List<BarObserver> observers = new ArrayList<>();
+
+    public void order(StringDrink drink , StringRecipe recipe){
+        recipe.mix(drink);
+    }
     @Override
     public boolean isHappyHour() {
         return happyHour;

@@ -1,21 +1,23 @@
 public class HumanClient implements Client{
+    private OrderingStrategy strategy;
+
+    public HumanClient (OrderingStrategy strategy){
+        this.strategy = strategy;
+    }
     @Override
     public void happyHourStarted(Bar bar) {
-        System.out.println("Happy hour Começou!!");
+
+        strategy.happyHourStarted((StringBar) bar);
     }
 
     @Override
     public void happyHourEnded(Bar bar) {
-        System.out.println("Happy Hour Terminou");
+        strategy.happyHourEnded((StringBar) bar);
     }
 
     @Override
     public void wants(StringDrink drink, StringRecipe recipe, StringBar bar) {
-        if(bar.isHappyHour()){
-            recipe.mix(drink);
-            System.out.println("Pedido Feito durante o Happy Hour");
-        }else{
-            System.out.println("Pedido Feito fora do Happy Hour");
-        }
+        strategy.wants(drink,recipe, bar);
     }
+
 }
